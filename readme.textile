@@ -2,7 +2,7 @@ h1. Ruby on Rails Application Template.
 
 h2. Introduction
 
-This is a Ruby on Rails application template.  "Read more":http://guides.rubyonrails.org/2_3_release_notes.html#application-templates about Rails templates. 
+This is a Ruby on Rails application template based heavily on the "Big Old Rails Template by Mike Gunderloy":http://github.com/ffmike/BigOldRailsTemplate.  "Read more":http://guides.rubyonrails.org/2_3_release_notes.html#application-templates about Rails templates. 
 
 h2. Installation
 
