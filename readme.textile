@@ -1,6 +1,14 @@
 h1. Ruby on Rails Application Template.
 
-This is a  Ruby on Rails application template featuring the following
+h2. Introduction
+
+This is a Ruby on Rails application template.  "Read more":http://guides.rubyonrails.org/2_3_release_notes.html#application-templates about Rails templates. 
+
+h2. Installation
+
+bc. $ rails app_name -m http://github.com/rswolff/Ruby-on-Rails-Template/raw/master/rails_template.rb
+
+Replace _app_name_ with your application name.
 
 h2. Source Control
 
@@ -26,6 +34,4 @@ Blueprint CSS
 
 h2. Basic Configuration
 
-The base application install comes pre-configures with roles based authentication using Authlogic and Declarative authorization
-
-
+The base application install comes pre-configures with roles based authentication using Authlogic and Declarative authorization.
