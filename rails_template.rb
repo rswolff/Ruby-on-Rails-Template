@@ -31,13 +31,13 @@ gem 'stringex', :source => 'http://www.gemcutter.org'
 gem 'paperclip', :source => 'http://www.gemcutter.org'
 gem 'jrails', :source => 'http://www.gemcutter.org'
 gem 'less', :source => 'http://www.gemcutter.org'
-gem 'more', :source => 'http://www.gemcutter.org'
 gem 'aasm', :source => 'http://www.gemcutter.org'
 gem 'whenever', :lib => false, :source => 'http://www.gemcutter.org'
 
 rake("gems:install", :sudo => true)
 
-#plugin 'more', :git => "git://github.com/cloudhead/more.git"
+plugin 'more', :git => "git://github.com/cloudhead/more.git"
+plugin 'enum_field', :git => "git://github.com/jamesgolick/enum_field.git"
 
 # Set up gitignore and commit base state
 file '.gitignore', <<-END
@@ -62,6 +62,14 @@ file 'app/views/layouts/_flashes.html.erb', <<-END
     <div id="flash_<%= key %>"><%=h value %></div>
   <% end -%>
 </div>
+END
+
+run "mkdir app/views/shared"
+file 'app/views/shared/_navigation.html.erb', <<-END
+<ul id="navlist">
+	<li><%= link_to "Home", root_path %></li>
+	<li>Test</li>
+</ul>
 END
 
 file 'app/views/layouts/application.html.erb', <<-END
@@ -93,6 +101,9 @@ file 'app/views/layouts/application.html.erb', <<-END
   </head>
   <body>
     <div class="container">
+  	<div id="navigation" class="span-24 last">
+  		<%= render :partial => 'shared/navigation'%>
+  	</div>
     <%= render :partial => 'layouts/flashes' -%>
     <%= yield %>
     </div>
@@ -864,6 +875,26 @@ file 'app/stylesheets/app.less', <<-END
 body {
   font-family: @font-family;
   font-size: 16px;
+}
+
+/* navigation */
+
+ul#navlist {
+	float:right;
+	margin:0;
+	display:block;
+}
+
+ul#navlist li {
+	background-color:#ccc;
+	border-left:1px solid #FFFFFF;
+	border-top:1px solid #FFFFFF;
+	display:inline;
+	float:left;
+	font-weight:bold;
+	list-style-type:none;
+	margin-top: 15px;
+	padding:5px 10px;
 }
 
 /* Forms */
