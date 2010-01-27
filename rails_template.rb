@@ -83,7 +83,7 @@ file 'app/views/layouts/application.html.erb', <<-END
     
     <script src="http://www.google.com/jsapi"></script>
   	<script language = "javascript" type="text/javascript"> 
-  		google.load("jquery", "1.3.2");
+  		google.load("jquery", "1.4.0");
   	</script>
 
   	<script src="/javascripts/jrails.js" type="text/javascript"></script>
