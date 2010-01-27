@@ -29,7 +29,6 @@ gem 'declarative_authorization', :source => 'http://www.gemcutter.org'
 gem 'will_paginate', :source => 'http://www.gemcutter.org'
 gem 'stringex', :source => 'http://www.gemcutter.org'
 gem 'paperclip', :source => 'http://www.gemcutter.org'
-gem 'jrails', :source => 'http://www.gemcutter.org'
 gem 'less', :source => 'http://www.gemcutter.org'
 gem 'aasm', :source => 'http://www.gemcutter.org'
 gem 'whenever', :lib => false, :source => 'http://www.gemcutter.org'
@@ -38,6 +37,7 @@ rake("gems:install", :sudo => true)
 
 plugin 'more', :git => "git://github.com/cloudhead/more.git"
 plugin 'enum_field', :git => "git://github.com/jamesgolick/enum_field.git"
+plugin 'jrails', :git => "git://github.com/aaronchi/jrails.git"
 
 # Set up gitignore and commit base state
 file '.gitignore', <<-END
