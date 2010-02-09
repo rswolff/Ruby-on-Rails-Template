@@ -906,6 +906,10 @@ input[type=text], input[type=password], select {
 input[type=submit] {
 	font-size: 18px;
 }
+
+textarea {
+  font-family: @font-family;
+}
 END
 
 rake('more:parse')
