@@ -258,6 +258,8 @@ set :scm, :git
 # Customise the deployment
 
 set :keep_releases, 3
+before "deploy:setup", :db
+after "deploy:update", "deploy:cleanup"
 after "deploy:update", "deploy:cleanup"
 after "deploy:symlink", "deploy:update_crontab"
 
@@ -275,6 +277,29 @@ after "deploy:symlink", "deploy:update_crontab"
 #     run "ln -nsf \#{shared_path}/config/database.yml \#{current_path}/config/database.yml"
 #   end
 # end
+
+namespace :db do
+  desc "Create database yaml in shared path" 
+  task :default do
+    db_config = ERB.new <<-EOF
+production:
+  username: 
+  password: 
+  adapter:  mysql
+  encoding: utf8
+  database: "#{current_app_name}_production"
+EOF
+
+    run "mkdir -p \#{shared_path}/config" 
+    put db_config.result, "\#{shared_path}/config/database.yml" 
+  end
+
+  desc "Make symlink for database yaml" 
+  task :symlink do
+    run "ln -nfs \#{shared_path}/config/database.yml \#{release_path}/config/database.yml" 
+  end
+end
+
     
 END
 
