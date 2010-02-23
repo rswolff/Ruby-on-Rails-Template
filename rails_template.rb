@@ -249,6 +249,12 @@ commit_state "wheneverize"
 capify!
 
 file 'config/deploy.rb', <<-END
+require 'erb'
+
+role :app, "domain_or_ip"
+role :web, "domain_or_ip"
+role :db,  "domain_or_ip", :primary => true
+
 set :application, "#{current_app_name}"
 set :repository,  "git@github:#{current_app_name}.git"
 set :user, "deploy"
@@ -260,7 +266,7 @@ set :scm, :git
 set :keep_releases, 3
 before "deploy:setup", :db
 after "deploy:update", "deploy:cleanup"
-after "deploy:update", "deploy:cleanup"
+# after "deploy:update", "deploy:cleanup"
 after "deploy:symlink", "deploy:update_crontab"
 
 # directories to preserve between deployments
