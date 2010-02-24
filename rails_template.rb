@@ -257,9 +257,12 @@ role :db,  "domain_or_ip", :primary => true
 
 set :application, "#{current_app_name}"
 set :repository,  "git@github:#{current_app_name}.git"
+#set :use_sudo, false
 set :user, "deploy"
 set :deploy_via, :remote_cache
 set :scm, :git
+default_run_options[:pty] = true
+#ssh_options[:port] = 30000
 
 # Customise the deployment
 
@@ -283,6 +286,13 @@ after "deploy:symlink", "deploy:update_crontab"
 #     run "ln -nsf \#{shared_path}/config/database.yml \#{current_path}/config/database.yml"
 #   end
 # end
+
+namespace :deploy do
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch \#{current_path}/tmp/restart.txt"
+  end
+end
 
 namespace :db do
   desc "Create database yaml in shared path" 
