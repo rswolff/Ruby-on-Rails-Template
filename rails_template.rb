@@ -78,7 +78,7 @@ file 'app/views/layouts/application.html.erb', <<-END
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title><%= @page_title || controller.action_name %></title>
+    <title><%= @page_title << " | \#{APP_CONFIG[:site_name]}" || controller.action_name %></title>
     
     
     <script src="http://www.google.com/jsapi"></script>
@@ -237,6 +237,25 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 
 Date::DATE_FORMATS[:human] = "%B %e, %Y"
 END
+
+initializer 'load_config.rb', <<-END
+APP_CONFIG = YAML.load_file("\#{RAILS_ROOT}/config/settings.yml")[RAILS_ENV].symbolize_keys
+END
+
+file 'config/settings.yml', <<-END
+development: &non_production_settings
+  site_url: http://localhost:3000
+  site_name: site-title
+  admin_email: email
+test:
+  <<: *non_production_settings
+
+production:
+  site_url: url
+  site_name: site-title
+  admin_email: email
+END
+
 
 commit_state "application files and initializers"
 
