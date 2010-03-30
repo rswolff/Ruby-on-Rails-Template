@@ -97,6 +97,8 @@ file 'app/views/layouts/application.html.erb', <<-END
     <![endif]-->
     
     <%= stylesheet_link_tag 'app' %>
+    <%= stylesheet_link_tag 'styles' %>
+    
     <%= yield :stylesheets %>
   </head>
   <body>
@@ -998,28 +1000,9 @@ end
 END
 
 file 'app/views/pages/home.html.erb', <<-END
-<div id="top_menu">
-  <% anonymous_only do %>
-    <%= link_to "Register", new_account_path %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-  <% authenticated_only do %>
-    <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
-  <% end %>
-</div>
-
-<div id="main">
+<div id="main" class="container">
   <h1>Welcome to #{current_app_name}</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
-
-<div id="left_menu">
-  <% anonymous_only do %>
-    <%= link_to "Register", new_account_path %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-  <% authenticated_only do %>
-  <% end %>
 </div>
 END
 
