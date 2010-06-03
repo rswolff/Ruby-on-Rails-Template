@@ -49,7 +49,7 @@ tmp/**/*
 /log/*.pid
 public/system/*
 tmp/sent_mails/*
-public/stylesheets/*
+app/stylesheets/*
 END
 
 commit_state "Base application with plugins and gems"
